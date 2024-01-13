@@ -12,6 +12,7 @@ public class Article  {
 
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String description;
     private  Double price;
@@ -20,11 +21,7 @@ public class Article  {
         return id;
     }
 
-    public Article(String description, Double price, String image) {
-        this.description = description;
-        this.price = price;
-        this.image = image;
-    }
+
 
     public Article(Long id, String description, Double price, String image) {
         this.id = id;
@@ -65,13 +62,8 @@ public class Article  {
         return image;
     }
 
-    public Categorie getCatalogue() {
-        return catalogue;
-    }
 
-    public void setCatalogue(Categorie catalogue) {
-        this.catalogue = catalogue;
-    }
+
 
     public void setImages(List<Image> images) {
         this.images = images;
@@ -82,10 +74,18 @@ public class Article  {
     }
 
     private String image;
+
+    public Categorie getCategorie() {
+        return categorie;
+    }
+
     @ManyToOne
-    @JoinColumn(name = "catalogue_id")
-    @JsonBackReference
-    private Categorie catalogue;
+    @JoinColumn(name = "categorie_id")
+    private Categorie categorie;
+
+    public void setCategorie(Categorie categorie) {
+        this.categorie = categorie;
+    }
 
     @OneToMany (mappedBy = "article", cascade = CascadeType.ALL)
     @JsonIgnore

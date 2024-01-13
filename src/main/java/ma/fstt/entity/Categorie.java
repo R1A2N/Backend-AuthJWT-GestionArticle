@@ -42,8 +42,9 @@ public class Categorie {
     public void setName(String name) {
         this.name = name;
     }
-    @OneToMany(mappedBy = "catalogue", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "categorie", cascade = CascadeType.ALL)
     @JsonIgnore
-    private List<Article> artcles;
+    private List<Article> articles;
+
 
 }

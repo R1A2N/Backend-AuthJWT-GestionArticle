@@ -4,32 +4,29 @@ import ma.fstt.entity.Article;
 import ma.fstt.entity.Categorie;
 import ma.fstt.repository.Articlerepo;
 import ma.fstt.repository.Categoryrepo;
+import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.util.List;
-
+@Service
 public class ArticleService {
     @Resource
-    private Articlerepo categoryrepo;
+    private Articlerepo articlerepo;
 
-    //ajouter catalogue
-    public Article ajouter_catalogue(Article ctlg){
-        return categoryrepo.save(ctlg);
 
-    }
-    //get la list des catalogue
-    public List<Article> getlist(){
-        return  categoryrepo.findAll();
-
+    public List<Article> getArticlesByCatalogueId(Long catalogueId) {
+        return articlerepo.findByCategorieId(catalogueId);
     }
 
-    //delete catalogue
-    public void deletecatal(long id){
-        categoryrepo.deleteById(id);
-
+    public void deleteArticle(long id) {
+        articlerepo.deleteById(id);
     }
-    public Article getCatalqueById(Long id) {
-        return categoryrepo.findById(id).orElse(null);
+
+    public Article createArticleByCatalogueId(Article article, Long catalogueId) {
+        Categorie catalogue = new Categorie();
+        catalogue.setId(catalogueId);
+        article.setCategorie(catalogue);
+        return articlerepo.save(article);
     }
 
 }

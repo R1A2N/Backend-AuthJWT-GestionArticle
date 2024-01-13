@@ -1,8 +1,10 @@
 package ma.fstt.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table
@@ -58,18 +60,35 @@ public class Article  {
         return price;
     }
 
+
     public String getImage() {
         return image;
     }
-    @Lob
-    @Column(name = "image_data", columnDefinition = "BLOB")
-    private byte[] imageData;
 
+    public Categorie getCatalogue() {
+        return catalogue;
+    }
+
+    public void setCatalogue(Categorie catalogue) {
+        this.catalogue = catalogue;
+    }
+
+    public void setImages(List<Image> images) {
+        this.images = images;
+    }
+
+    public List<Image> getImages() {
+        return images;
+    }
 
     private String image;
     @ManyToOne
     @JoinColumn(name = "catalogue_id")
     @JsonBackReference
     private Categorie catalogue;
+
+    @OneToMany (mappedBy = "article", cascade = CascadeType.ALL)
+    @JsonIgnore
+    private List<Image> images;
 
 }

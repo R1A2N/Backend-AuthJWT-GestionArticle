@@ -10,11 +10,11 @@ public class Article  {
 
 
     @Id
-    private Integer id;
+    private Long id;
     private String description;
     private  Double price;
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
@@ -24,7 +24,7 @@ public class Article  {
         this.image = image;
     }
 
-    public Article(Integer id, String description, Double price, String image) {
+    public Article(Long id, String description, Double price, String image) {
         this.id = id;
         this.description = description;
         this.price = price;
@@ -34,7 +34,7 @@ public class Article  {
     public Article() {
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

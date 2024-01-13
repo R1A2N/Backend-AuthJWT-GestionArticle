@@ -11,15 +11,15 @@ import java.util.List;
 public class Categorie {
     @Id
     @GeneratedValue
-    private Integer id;
+    private Long id;
 
     private String name;
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -30,7 +30,7 @@ public class Categorie {
     public Categorie() {
     }
 
-    public Categorie(Integer id, String name) {
+    public Categorie(Long id, String name) {
         this.id = id;
         this.name = name;
     }
